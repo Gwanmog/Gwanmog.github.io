@@ -1,216 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexander Brown | Software Engineer Portfolio</title>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #7dd3fc;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Brown — AI Product & Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
+    :root {
+      --bg:          #0f172a;
+      --card-bg:     #1e293b;
+      --card-border: #334155;
+      --text-main:   #f8fafc;
+      --text-dim:    #94a3b8;
+      --text-muted:  #64748b;
+      --accent:      #38bdf8;
+      --accent-dim:  rgba(56, 189, 248, 0.12);
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Header Section */
-        header {
-            text-align: center;
-            padding: 60px 0;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
+    /* ── Nav ──────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 60px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+    }
 
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+    .nav-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
 
-        .hero-desc {
-            color: var(--text-dim);
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
+    .nav-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-resume:hover { border-color: var(--accent); color: var(--accent); }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--bg);
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
+    /* ── Layout ───────────────────────────────────────────────────────── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
+    /* ── Hero ─────────────────────────────────────────────────────────── */
+    header { padding: 80px 0 72px; }
 
-        /* Projects Section */
-        .section-title {
-            font-size: 1.8rem;
-            margin-top: 60px;
-            border-bottom: 2px solid var(--card-bg);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
 
-        .project-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            transition: transform 0.2s ease;
-        }
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 540px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
+    .role-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
 
-        .project-title {
-            font-size: 1.4rem;
-            color: var(--accent);
-            margin-top: 0;
-        }
+    .pill {
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+      background: var(--card-bg);
+    }
 
-        .tech-stack {
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            margin-bottom: 15px;
-            display: block;
-        }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .project-links {
-            margin-top: 20px;
-        }
+    /* ── Section labels ───────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
 
-        .project-links a {
-            color: var(--accent);
-            text-decoration: none;
-            margin-right: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+    section { padding: 64px 0; }
 
-        .project-links a:hover {
-            text-decoration: underline;
-        }
+    /* ── Cards ────────────────────────────────────────────────────────── */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-        /* Contact/Footer */
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding-bottom: 40px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      border-color: #475569;
+    }
 
-        .footer-links a {
-            color: var(--text-dim);
-            margin: 0 10px;
-            text-decoration: none;
-        }
+    .card-featured {
+      border-top: 2px solid var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.08), 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .card-featured:hover {
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.18), 0 16px 48px rgba(0,0,0,0.4);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
 
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-    </style>
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
+
+    .badge-featured {
+      flex-shrink: 0;
+      padding: 3px 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(56,189,248,0.25);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .card-problem {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .card-detail {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .tech-pill {
+      padding: 3px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      font-size: 0.73rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: 'Inter', monospace;
+    }
+
+    .card-links { display: flex; gap: 10px; }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .card-link:hover { opacity: 0.82; transform: translateY(-1px); }
+
+    .link-demo {
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.22);
+      color: var(--accent);
+    }
+    .link-code {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+    }
+
+    /* ── Bridge ───────────────────────────────────────────────────────── */
+    .bridge-section { border-top: 1px solid var(--card-border); }
+
+    .bridge-quote {
+      border-left: 3px solid var(--accent);
+      padding: 4px 0 4px 28px;
+    }
+
+    .bridge-quote p {
+      font-size: 1.02rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .bridge-quote p + p { margin-top: 20px; }
+    .bridge-quote strong { color: var(--text-main); font-weight: 600; }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0 52px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      header { padding: 56px 0 52px; }
+      section { padding: 48px 0; }
+      .card { padding: 22px 20px; }
+      .card-links { flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-name">Alexander Brown</a>
+    <a href="Alexander_Brown_Resume.pdf" download class="nav-resume">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Resume
+    </a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
     <header>
-        <h1>ALEXANDER BROWN</h1>
-        <div class="tagline">Systems-Minded Software Engineer</div>
-        <p class="hero-desc">
-            9 years of experience optimizing industrial processes in the beverage industry. 
-            Applying engineering rigor and data-driven problem solving to build scalable, 
-            AI-integrated software solutions.
-        </p>
-        <a href="Alexander_Brown_Resume.pdf" class="btn" target="_blank">Download Resume</a>
+      <div class="hero-eyebrow">Available for new roles</div>
+      <h1>Process engineer.<br>Now building with AI.</h1>
+      <p class="hero-tagline">
+        Nine years running complex physical systems at Anheuser-Busch — yield optimization, throughput, root cause analysis. Software is the natural evolution. I bring operational rigor, product instincts, and real builder credibility.
+      </p>
+      <div class="role-pills">
+        <span class="pill">Product Manager</span>
+        <span class="pill">Technical PM</span>
+        <span class="pill">AI Product</span>
+        <span class="pill">Solutions Engineer</span>
+        <span class="pill">Developer Advocate</span>
+      </div>
+      <a href="Alexander_Brown_Resume.pdf" download class="hero-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
     </header>
 
-    <h2 class="section-title">Featured Projects</h2>
-    
-    <div class="project-grid">
-        <div class="project-card">
-            <h3 class="project-title">Seoul Food AI</h3>
-            <span class="tech-stack">Node.js • Google Gemini • Leaflet.js • Docker • RAG Architecture</span>
-            <p>A full-stack geospatial platform enabling real-time, context-aware dining suggestions. Implemented RAG to ground AI responses in verified data, eliminating hallucination risks for 1,000+ venues.</p>
-            <div class="project-links">
-                <a href="https://gwanmog.github.io/korea-food-lists/site/" target="_blank">Live Demo →</a>
-                <a href="https://github.com/Gwanmog" target="_blank">View Code</a>
-            </div>
+    <!-- Projects -->
+    <section>
+      <div class="section-label">Featured Projects</div>
+      <div class="projects-grid">
+
+        <!-- 1. Eat My Seoul -->
+        <div class="card card-featured">
+          <div class="card-header">
+            <span class="card-title">Eat My Seoul</span>
+            <span class="badge-featured">Featured</span>
+          </div>
+          <p class="card-problem">Finding great food in Seoul as a non-Korean speaker means wading through tourist traps and outdated blogs.</p>
+          <p class="card-detail">Built a full RAG pipeline from scratch: FAISS vector embeddings, Gemini-generated bilingual descriptions, multi-source aggregation (Michelin, Blue Ribbon, proprietary Neon Guide), and automated deduplication. A human-in-the-loop "Supreme Court" auditing system catches AI hallucinations via receipt verification. Implicit user feedback — clicks, non-clicks — flows into Supabase to improve recommendations over time.</p>
+          <div class="tech-pills">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">FAISS</span>
+            <span class="tech-pill">Google Gemini</span>
+            <span class="tech-pill">Kakao API</span>
+            <span class="tech-pill">Supabase</span>
+          </div>
+          <div class="card-links">
+            <a href="https://gwanmog.github.io/korea-food-lists/site/" target="_blank" rel="noopener" class="card-link link-demo">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Gwanmog/korea-food-lists" target="_blank" rel="noopener" class="card-link link-code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              View Code
+            </a>
+          </div>
         </div>
 
-        <div class="project-card">
-            <h3 class="project-title">The Adventurizer</h3>
-            <span class="tech-stack">Python • Streamlit • API Integration • Modular Architecture</span>
-            <p>A travel planning engine that generates and prices complex multi-city itineraries. Features a modular backend with a clean separation of concerns across flight search, pricing, and transport modules.</p>
-            <div class="project-links">
-                <a href="https://theadventurizer.streamlit.app/" target="_blank">Live Demo →</a>
-                <a href="https://github.com/Gwanmog" target="_blank">View Code</a>
-            </div>
+        <!-- 2. DMbot -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">DMbot</span>
+          </div>
+          <p class="card-problem">Every tabletop RPG group has the same problem — nobody wants to DM.</p>
+          <p class="card-detail">An AI agent that runs full D&amp;D 5e campaigns autonomously inside Discord — voice-enabled, RAG-powered from campaign PDFs, and spatially aware enough to track party location room by room, firing the correct read-alouds and revealing monsters as written. Next milestone: battlemap VTT integration.</p>
+          <div class="tech-pills">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">LangChain</span>
+            <span class="tech-pill">ChromaDB</span>
+            <span class="tech-pill">Discord</span>
+            <span class="tech-pill">TTS / STT</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/Gwanmog/DMbot" target="_blank" rel="noopener" class="card-link link-code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              View Code
+            </a>
+          </div>
         </div>
 
-        <div class="project-card">
-            <h3 class="project-title">House Hunter</h3>
-            <span class="tech-stack">Python • Streamlit • Data Pipelines • Logic-Driven Ranking</span>
-            <p>An investment housing tool designed to streamline property evaluation. Engineered custom filtering and ranking logic to prioritize listings based on user-defined financial preferences.</p>
-            <div class="project-links">
-                <a href="https://househunter.streamlit.app/" target="_blank">Live Demo →</a>
-                <a href="https://github.com/Gwanmog" target="_blank">View Code</a>
-            </div>
+        <!-- 3. The Adventurizer -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">The Adventurizer</span>
+          </div>
+          <p class="card-problem">Round-trip flights are often the worst way to see multiple cities — but finding better combinations manually takes hours.</p>
+          <p class="card-detail">A multi-city routing engine that surfaces non-obvious combinations — fly into Prague, train to Munich, fly home from Vienna, cheaper than the direct round-trip. Modular backend with clean separation across flight search, pricing, and transport. Next step: live flight data and European rail/bus routes.</p>
+          <div class="tech-pills">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Streamlit</span>
+            <span class="tech-pill">API Integration</span>
+          </div>
+          <div class="card-links">
+            <a href="https://theadventurizer.streamlit.app/" target="_blank" rel="noopener" class="card-link link-demo">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Gwanmog/Trip_Optimizer" target="_blank" rel="noopener" class="card-link link-code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              View Code
+            </a>
+          </div>
         </div>
-    </div>
 
-    <h2 class="section-title">The Bridge: From Ops to Code</h2>
-    <p class="hero-desc" style="text-align: left;">
-        As a <strong>Brewing Area Manager</strong> and <strong>Process Engineer</strong> at Anheuser-Busch, 
-        I specialized in optimizing complex, physical systems. I achieved a 2% increase in yield and a 3% boost in throughput 
-        by identifying root causes and implementing data-driven strategies. 
-        Software engineering is the natural evolution of this work—building digital systems with the same 
-        emphasis on efficiency, scalability, and structural integrity.
-    </p>
+        <!-- 4. House Hunter -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">House Hunter</span>
+          </div>
+          <p class="card-problem">Evaluating investment properties means juggling spreadsheets across dozens of listings with no consistent ranking logic.</p>
+          <p class="card-detail">A custom filtering and ranking engine that scores properties against user-defined financial preferences — cap rate, cash flow, neighborhood metrics — instead of whatever Zillow thinks matters.</p>
+          <div class="tech-pills">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Streamlit</span>
+            <span class="tech-pill">Data Pipelines</span>
+          </div>
+          <div class="card-links">
+            <a href="https://househunter.streamlit.app/" target="_blank" rel="noopener" class="card-link link-demo">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Gwanmog/House-Hunter" target="_blank" rel="noopener" class="card-link link-code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              View Code
+            </a>
+          </div>
+        </div>
 
+        <!-- 5. Funky Fresh Friday -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Funky Fresh Friday</span>
+          </div>
+          <p class="card-problem">Date nights get repetitive. Picking somewhere new shouldn't require a Pinterest board and two hours of research.</p>
+          <p class="card-detail">Spins a globe and drops you in a random country — excluding your history — then generates a full cultural immersion package: Spotify playlist, iconic recipes with links, country-relevant films with streaming info. A passport sidebar tracks every country you've "visited."</p>
+          <div class="tech-pills">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Streamlit</span>
+            <span class="tech-pill">SQLite</span>
+            <span class="tech-pill">Spotify API</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/Gwanmog/FFF" target="_blank" rel="noopener" class="card-link link-code">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+              View Code
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bridge -->
+    <section class="bridge-section">
+      <div class="section-label">The Bridge: From Ops to Code</div>
+      <div class="bridge-quote">
+        <p>For nearly a decade at Anheuser-Busch, I ran the kind of systems where <strong>a bad decision costs you a batch of beer and a week of yield data.</strong> I got good at finding root causes fast, building processes that scale, and making complex operations legible to the people running them.</p>
+        <p>Software is the same discipline with better version control. <strong>I build AI-integrated tools the same way I optimized breweries</strong> — start with the actual problem, instrument everything, and don't ship what you can't explain.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer-links">
-            <a href="https://github.com/Gwanmog" target="_blank">GitHub</a> | 
-            <a href="mailto:alexander.brown10@okstate.edu">Email</a>
-        </div>
-        <p>&copy; 2026 Alexander Brown. Built with Python-fueled persistence.</p>
+      <div class="footer-links">
+        <a href="https://github.com/Gwanmog" target="_blank" rel="noopener" class="footer-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/alexander-brown8/" target="_blank" rel="noopener" class="footer-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:alexander.brown10@okstate.edu" class="footer-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Alexander Brown. Built with Python-fueled persistence.</p>
     </footer>
-</div>
 
+  </div>
 </body>
 </html>
